@@ -6,6 +6,8 @@ interface Anneau<T>
 	public T un();
 	public T add(T other);
 	public T mul(T other);
+	public T oppose();
+	public T moins(T other);
 }
 
 public class IntegerTraffique implements Anneau<IntegerTraffique>
@@ -44,6 +46,18 @@ public class IntegerTraffique implements Anneau<IntegerTraffique>
 	public IntegerTraffique mul(IntegerTraffique other)
 	{
 		return new IntegerTraffique(get() * other.get());
+	}
+	
+	@Override
+	public IntegerTraffique oppose()
+	{
+		return new IntegerTraffique(-get());
+	}
+	
+	@Override
+	public IntegerTraffique moins(IntegerTraffique other)
+	{
+		return add(other.oppose());
 	}
 	
 	@Override

@@ -67,6 +67,22 @@ class Matrice<T extends Anneau<T>> implements Anneau<Matrice<T>>, Iterable<T>
 	}
 
 	@Override
+	public Matrice<T> oppose()
+	{
+		Matrice<T> oppose = new Matrice<T>(nbL, nbL);
+		for(int i = 0 ; i < nbL ; i++)
+			for(int j = 0 ; j < nbC ; j++)
+				oppose.set(i, j, get(i, j).oppose());
+		return oppose;
+	}
+
+	@Override
+	public Matrice<T> moins(Matrice<T> other)
+	{
+		return add(other.oppose());
+	}
+	
+	@Override
 	public Matrice<T> zero()
 	{
 		return new Matrice<T>(nbL, nbC, get(0, 0).zero());
@@ -114,5 +130,7 @@ public class Wrapper
 		System.out.println(zero);
 		System.out.println(m.add(un));
 		System.out.println(m.mul(m));
+		System.out.println(m.oppose());
+		System.out.println(m.moins(un));
 	}
 }
